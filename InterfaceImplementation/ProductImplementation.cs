@@ -36,7 +36,7 @@ namespace EtherealMadeFin.InterfaceImplementation
 
         public IEnumerable<Product> GetProductsByCategory(int id)
         {
-            var category = _dbContext.ProductCategory.Where(products => products.CategoryId == id).First();
+            var category = _dbContext.ProductCategory.Where(products => products.CategoryId == id).FirstOrDefault();
             return category.Products;
         }
 

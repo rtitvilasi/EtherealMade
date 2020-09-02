@@ -72,7 +72,8 @@ namespace EtherealMadeFin.Controllers
         }
         public IActionResult Product(int id)
         {
-            return View();
+            var product = _Iproduct.GetById(id);
+            return View(product);
         }
 
         [Authorize]

@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using EtherealMadeFin.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using EtherealMadeFin.InterfaceImplementation;
+using EtherealMadeFin.Interface;
 
 namespace EtherealMadeFin
 {
@@ -42,6 +44,9 @@ namespace EtherealMadeFin
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddScoped<ICategoryFetching, CategoryFetchingImplementation>();
+            services.AddScoped<IProduct, ProductImplementation>();
+            services.AddScoped<IComment, CommentImplementation>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

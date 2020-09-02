@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace EtherealMadeFin.Data.Migrations
+namespace EtherealMadeFin.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class tstmig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,22 @@ namespace EtherealMadeFin.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductCategory",
+                columns: table => new
+                {
+                    CategoryId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CategoryTitle = table.Column<string>(nullable: true),
+                    CategoryDescription = table.Column<string>(nullable: true),
+                    CategoryExtraDescription = table.Column<string>(nullable: true),
+                    CategoryImageUrl = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductCategory", x => x.CategoryId);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,6 +169,59 @@ namespace EtherealMadeFin.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ProductTitle = table.Column<string>(nullable: true),
+                    ProductSubTitle = table.Column<string>(nullable: true),
+                    ProductImage = table.Column<string>(nullable: true),
+                    ProductPrice = table.Column<string>(nullable: true),
+                    ProductWeight = table.Column<string>(nullable: true),
+                    ProductDescription = table.Column<string>(nullable: true),
+                    ProductThemeColour = table.Column<string>(nullable: true),
+                    CheckoutLink = table.Column<string>(nullable: true),
+                    Module1Title = table.Column<string>(nullable: true),
+                    Module1Description = table.Column<string>(nullable: true),
+                    Module1Image = table.Column<string>(nullable: true),
+                    ProductcategoryCategoryId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductCategory_ProductcategoryCategoryId",
+                        column: x => x.ProductcategoryCategoryId,
+                        principalTable: "ProductCategory",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    CommentId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CommentContent = table.Column<string>(nullable: true),
+                    CommentCreated = table.Column<DateTime>(nullable: false),
+                    UserName = table.Column<string>(nullable: true),
+                    UserEmail = table.Column<string>(nullable: true),
+                    ProductId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.CommentId);
+                    table.ForeignKey(
+                        name: "FK_Comments_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +260,16 @@ namespace EtherealMadeFin.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_ProductId",
+                table: "Comments",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ProductcategoryCategoryId",
+                table: "Products",
+                column: "ProductcategoryCategoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +290,19 @@ namespace EtherealMadeFin.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Comments");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "ProductCategory");
         }
     }
 }

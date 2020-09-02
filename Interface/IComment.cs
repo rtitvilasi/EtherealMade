@@ -10,6 +10,7 @@ namespace EtherealMadeFin.Interface
     {
         IEnumerable<Comment> GetAll();
         Comment GetById(int id);
+        IEnumerable<Comment> GetCommentsByCategory(int id);
         Task AddComment(Comment comment);
         Task Delete(int Commentid);
         

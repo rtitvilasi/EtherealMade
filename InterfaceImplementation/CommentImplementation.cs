@@ -43,5 +43,10 @@ namespace EtherealMadeFin.InterfaceImplementation
                 .Include(comment => comment.Product)
                 .FirstOrDefault();
         }
+        public IEnumerable<Comment> GetCommentsByCategory(int id)
+        {
+            var product = _dbContext.Products.Where(products => products.ProductId == id).FirstOrDefault();
+            return product.Comments;
+        }
     }
 }
