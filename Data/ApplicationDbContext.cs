@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using EtherealMadeFin.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,5 +13,8 @@ namespace EtherealMadeFin.Data
             : base(options)
         {
         }
+        public DbSet<ProductCategory> ProductCategory { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }
