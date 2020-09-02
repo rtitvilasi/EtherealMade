@@ -21,7 +21,7 @@ namespace EtherealMadeFin.InterfaceImplementation
         {
             var product = _dbContext.Products
                                     .Include(comment => comment.Comments)
-                                    .Include(category => category.ProductCategory);
+                                    .Include(category => category.Productcategory);
             return product;
         }
 
@@ -29,16 +29,15 @@ namespace EtherealMadeFin.InterfaceImplementation
         {
             var product = _dbContext.Products.Where(products => products.ProductId == id)
                                              .Include(comment => comment.Comments)
-                                             .Include(category => category.ProductCategory)
+                                             .Include(category => category.Productcategory)
                                              .First();
             return product;
         }
 
         public IEnumerable<Product> GetProductsByCategory(int id)
         {
-            return _dbContext.ProductCategory.Where(products => products.CategoryId == id)
-                                             .First()
-                                             .Products;
+            var category = _dbContext.ProductCategory.Where(products => products.CategoryId == id).First();
+            return category.Products;
         }
 
         public async Task AddProduct(Product product)

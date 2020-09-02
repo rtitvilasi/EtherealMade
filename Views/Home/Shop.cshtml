@@ -1,121 +1,35 @@
-﻿<section class="container">
+﻿@model EtherealMadeFin.Models.ProductCategoryListingModel
+<section class="container">
     <div class="page-header">
-        <h1>Shop +<br></h1>
+        <h1>products<br></h1>
     </div>
     <div class="row active-with-click " style="margin: auto">
-        <div class="col-md-3 col-sm-6 col-xs-12 res">
-            <article class="material-card Red">
-                <h2>
-                    <span>Christopher Walken</span>
-                    <strong>
-                        The Deer Hunter
-                    </strong>
-                </h2>
-                <div class="mc-content">
-                    <div class="img-container">
-                        <img class="img-responsive" src="https://www.salebhai.com/content/images/thumbs/0033001_antique-products.png">
-                    </div>
-                    <div class="mc-description">
-                        <ul style="list-style-type:none; line-height:150%">
-                            <li><a href="./ProductIndex.html">Product 1</a></li>
-                            <li>Product 2</li>
-                            <li>Product 3</li>
-                            <li>Safari</li>
-                            <li>Opera</li>
-                        </ul>
-                    </div>
-                </div>
-                <a class="mc-btn-action">
-                    <i class="fa fa-bars"></i>
-                </a>
+        @foreach (var category in Model.Categories)
+        {
 
-            </article>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 res">
-            <article class="material-card Red">
-                <h2>
-                    <span>Christopher Walken</span>
-                    <strong>
-                        The Deer Hunter
-                    </strong>
-                </h2>
-                <div class="mc-content">
-                    <div class="img-container">
-                        <img class="img-responsive" src="https://static.wixstatic.com/media/2cd43b_5d66d90bf5d245da99dd31afaed3590d~mv2.png">
+            <div class="col-md-3 col-sm-6 col-xs-12 res">
+                <article class="material-card Red">
+                    <h2>
+                        <a style="text-decoration: none" asp-controller="Home" asp-action="ProductsByCategory" asp-route-id="@category.CategoryId">
+                            <span>@category.CategoryTitle</span>
+                            <strong>
+                                @category.CategoryDescription
+                            </strong>
+                        </a>
+                    </h2>
+                    <div class="mc-content">
+                        <div class="img-container">
+                            <img class="img-responsive" src="@category.CategoryImageUrl">
+                        </div>
+                        <div class="mc-description">
+                            @category.CategoryExtraDescription
+                        </div>
                     </div>
-                    <div class="mc-description">
-                        <ul style="list-style-type:none; line-height:150%">
-                            <li>Google Chrome</li>
-                            <li>Internet Explorer</li>
-                            <li>Mozilla Firefox</li>
-                            <li>Safari</li>
-                            <li>Opera</li>
-                        </ul>
-                    </div>
-                </div>
-                <a class="mc-btn-action">
-                    <i class="fa fa-bars"></i>
-                </a>
 
-            </article>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 res">
-            <article class="material-card Red">
-                <h2>
-                    <span>Christopher Walken</span>
-                    <strong>
-                        The Deer Hunter
-                    </strong>
-                </h2>
-                <div class="mc-content">
-                    <div class="img-container">
-                        <img class="img-responsive" src="https://www.salebhai.com/content/images/thumbs/0033001_antique-products.png">
-                    </div>
-                    <div class="mc-description">
-                        <ul style="list-style-type:none; line-height:150%">
-                            <li>Google Chrome</li>
-                            <li>Internet Explorer</li>
-                            <li>Mozilla Firefox</li>
-                            <li>Safari</li>
-                            <li>Opera</li>
-                        </ul>
-                    </div>
-                </div>
-                <a class="mc-btn-action">
-                    <i class="fa fa-bars"></i>
-                </a>
 
-            </article>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12 res">
-            <article class="material-card Red">
-                <h2>
-                    <span>Christopher Walken</span>
-                    <strong>
-                        The Deer Hunter
-                    </strong>
-                </h2>
-                <div class="mc-content">
-                    <div class="img-container">
-                        <img class="img-responsive" src="https://lh3.googleusercontent.com/proxy/7rGaFmcFFrDmCRN8JoriFzEM_YJzqlQEMyOL7DCfC25qLr1jW-D5LpvF6eVjRhI71mc78CHYB_scKXrkLC3WsEoflHaxdeWNIJed3wK2HaS9s0pJV3LV3MxJCnU">
-                    </div>
-                    <div class="mc-description">
-                        <ul style="list-style-type:none; line-height:150%">
-                            <li>Google Chrome</li>
-                            <li>Internet Explorer</li>
-                            <li>Mozilla Firefox</li>
-                            <li>Safari</li>
-                            <li>Opera</li>
-                        </ul>
-                    </div>
-                </div>
-                <a class="mc-btn-action">
-                    <i class="fa fa-bars"></i>
-                </a>
-
-            </article>
-        </div>
-
+                </article>
+            </div>
+        }
     </div>
 </section>
 
@@ -156,4 +70,5 @@
 
     </section>
 </main>
+
 

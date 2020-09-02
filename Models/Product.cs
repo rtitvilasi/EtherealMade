@@ -13,14 +13,14 @@ namespace EtherealMadeFin.Models
         public string ProductImage { get; set; }
         public string ProductPrice { get; set; }
         public string ProductWeight { get; set; }
-        public string ProductDesciption { get; set; }
+        public string ProductDescription { get; set; }
         public string ProductThemeColour { get; set; }
         public string CheckoutLink { get; set; }
         public string Module1Title { get; set; }
         public string Module1Description { get; set; }
         public string Module1Image { get; set; }
 
-        public virtual ProductCategory ProductCategory { get; set; }
+        public virtual ProductCategory Productcategory { get; set; }
         public virtual IEnumerable<Comment> Comments { get; set; }
     }
 }

@@ -1,0 +1,74 @@
+﻿@model EtherealMadeFin.Models.ProductListingModel
+    <section class="container">
+        <div class="page-header">
+            <h1>products<br></h1>
+        </div>
+        <div class="row active-with-click " style="margin: auto">
+            @foreach (var product in Model.Products)
+            {
+
+                <div class="col-md-3 col-sm-6 col-xs-12 res">
+                    <article class="material-card Red">
+                        <h2>
+                            <a style="text-decoration: none" asp-controller="Home" asp-action="Product" asp-route-id="@product.ProductId">
+                                <span>@product.ProductTitle</span>
+                                <strong>
+                                    @product.ProductPrice
+                                </strong>
+                            </a>
+                        </h2>
+                        <div class="mc-content">
+                            <div class="img-container">
+                                <img class="img-responsive" src="@product.ProductImage">
+                            </div>
+                            <div class="mc-description">
+                                @product.ProductSubTitle
+                            </div>
+                        </div>
+
+
+                    </article>
+                </div>
+            }
+        </div>
+    </section>
+
+<main class="body-net main-net">
+    <header class="header-net">
+        <h1>Shop Gift</h1>
+    </header>
+
+    <section class="section-net">
+
+        <!-- Card Column One -->
+        <div class="flex-col">
+            <div class="cards one">
+                <h3>Supervisor</h3>
+                <p>Monitors activity to identify project roadblocks</p>
+            </div>
+        </div>
+
+        <!-- Card Column Two -->
+        <div class="flex-col">
+            <div class="cards two">
+                <h3>Team Builder</h3>
+                <p>Scans our talent network to create this optimal team for your project</p>
+            </div>
+            <div class="cards three">
+                <h3>Karma</h3>
+                <p>Regularly evaluates our talent to ensure quality</p>
+            </div>
+        </div>
+
+        <!-- Card Column Three -->
+        <div class="flex-col">
+            <div class="cards four">
+                <h3>Calculator</h3>
+                <p>Uses data from past projects to provide better delivery estimates</p>
+            </div>
+        </div>
+        
+    </section>
+    </main>
+
+
